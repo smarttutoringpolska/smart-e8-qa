@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2b163f" />
+  <title>Smart E8 — Matematyka 2027</title>
+  <meta name="description" content="Interaktywny panel przygotowań do egzaminu ósmoklasisty z matematyki 2027 zgodny z aktualnym informatorem CKE." />
+  <link rel="stylesheet" href="./styles.css?v=3" />
+  <link rel="stylesheet" href="./entry.css" />
+  <link rel="stylesheet" href="./auth.css" />
+  <link rel="stylesheet" href="./e8-theme.css?v=28" />
+  <link rel="stylesheet" href="./test-reports.css">
+  <link rel="stylesheet" href="./e8-experience.css?v=3">
+</head>
+<body>
+  <svg aria-hidden="true" class="svg-sprite">
+    <defs>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a3 3 0 0 1 3-3h5v18H7a3 3 0 0 0-3 2zM20 5a3 3 0 0 0-3-3h-5v18h5a3 3 0 0 1 3 2z"/></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10m6 10V4m6 16v-7m5 7V7"/></symbol>
+      <symbol id="i-note" viewBox="0 0 24 24"><path d="M5 3h12l3 3v15H5zM17 3v4h3M9 12h7M9 16h5"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l-3 2"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="m14 10 7-7m-4 0h4v4"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+      <symbol id="i-brain" viewBox="0 0 24 24"><path d="M9 5a3 3 0 0 0-5 2 3 3 0 0 0 0 6 3 3 0 0 0 3 5h2m6-13a3 3 0 0 1 5 2 3 3 0 0 1 0 6 3 3 0 0 1-3 5h-2M9 3v18m6-18v18M6 9h3m6 0h3M6 15h3m6 0h3"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 2h8l4 4v16H6zM14 2v5h5M9 12h6M9 16h6"/></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7V3l-3 3a8 8 0 1 0 2 9M4 17v4l3-3"/></symbol>
+      <symbol id="i-cap" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5zM6 11v5c3 3 9 3 12 0v-5M22 9v6"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+      <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a5 5 0 0 1 10 0v2M16 4a3 3 0 0 1 0 6M17 14a5 5 0 0 1 4 4v2"/></symbol>
+      <symbol id="i-light" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M8 14a7 7 0 1 1 8 0c-1 .7-1 2-1 2H9s0-1.3-1-2z"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    </defs>
+  </svg>
+
+  <section class="entry-splash" id="entrySplash" aria-label="Uruchamianie Smart E8">
+    <div class="entry-grid" aria-hidden="true"></div>
+    <div class="entry-formulas" aria-hidden="true">
+      <span>25% z 240</span>
+      <span>3x + 7 = 22</span>
+      <span>P = a · h</span>
+      <span>P(A) = k/n</span>
+    </div>
+    <div class="entry-glow entry-glow-one" aria-hidden="true"></div>
+    <div class="entry-glow entry-glow-two" aria-hidden="true"></div>
+    <div class="entry-stage">
+      <div class="entry-logo" aria-hidden="true"><i></i><i></i></div>
+      <span class="entry-kicker">MATEMATYKA · EGZAMIN ÓSMOKLASISTY</span>
+      <h1>SMART <b>E8</b></h1>
+      <p>Uczysz się krócej. Rozumiesz więcej.</p>
+      <div class="entry-stats"><span>12 działów</span><span>360 przykładów</span><span>próby na czas</span></div>
+      <div class="entry-loader" aria-hidden="true"><i></i></div>
+      <small>Przygotowujemy Twój plan nauki</small>
+    </div>
+    <button class="entry-skip" id="entrySkip" type="button">Przejdź do panelu →</button>
+  </section>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="icon-button mobile-only" id="menuButton" aria-label="Otwórz menu" aria-expanded="false" aria-controls="sidebar"><svg><use href="#i-menu"/></svg></button>
+      <button class="brand" data-route="overview" aria-label="Smart E8 — strona główna">
+        <span class="brand-mark"><i></i><i></i></span>
+        <span class="brand-copy">SMART E8<small>Matematyka 2027</small></span>
+      </button>
+      <div class="top-actions">
+        <span class="cke-chip"><svg><use href="#i-check"/></svg>Zakres CKE 2027</span>
+        <div class="account-wrap">
+          <button class="account-chip" id="accountButton" type="button" aria-label="Otwórz konto ucznia">
+            <div class="avatar">U</div>
+            <span class="profile-copy"><strong id="accountName">Uczeń</strong><small id="syncStatus">Synchronizacja…</small></span>
+          </button>
+          <div class="account-menu" id="accountMenu">
+            <span>KONTO UCZNIA</span>
+            <b id="accountEmail"></b>
+            <small id="accountStorageNote">Postęp zapisuje się automatycznie online.</small>
+            <a class="quality-link" id="qualityLink" href="./admin.html" hidden>Panel administratora</a>
+            <button id="signOutButton" type="button">Wyloguj się</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="nav-group">
+        <button class="nav-item active" data-route="overview"><svg><use href="#i-home"/></svg><span>Start</span></button>
+        <button class="nav-item" data-route="guide"><svg><use href="#i-list"/></svg><span>Jak korzystać</span></button>
+        <button class="nav-item" data-route="courses"><svg><use href="#i-brain"/></svg><span>Kursy</span></button>
+        <button class="nav-item" data-route="knowledge"><svg><use href="#i-book"/></svg><span>Podręcznik</span></button>
+        <button class="nav-item" data-route="diagnostic"><svg><use href="#i-target"/></svg><span>Diagnoza i plan</span></button>
+        <button class="nav-item" data-route="exam" data-target="mixed"><svg><use href="#i-clock"/></svg><span>Próba E8</span></button>
+        <button class="nav-item" data-route="progress"><svg><use href="#i-chart"/></svg><span>Postępy</span></button>
+        <button class="nav-item" data-route="review"><svg><use href="#i-refresh"/></svg><span>Powtórki</span></button>
+        <div class="nav-divider" aria-hidden="true"></div>
+        <button class="nav-item parent-nav-item" data-route="parent" title="Raport dla rodzica"><svg><use href="#i-users"/></svg><span>Dla rodzica</span></button>
+      </div>
+    </aside>
+
+    <main id="appMain" tabindex="-1"></main>
+  </div>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="topic-drawer" id="topicDrawer" aria-hidden="true"></aside>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="../qa-profile.js"></script>
+  <script src="./config.js"></script>
+  <script src="./cloud.js"></script>
+  <script src="./e8-experience.js?v=2"></script>
+  <script src="./e8-solution-examples.js?v=1"></script>
+  <script src="./e8-solution-player.js?v=2"></script>
+  <script src="./sync.js?v=e8-20260930-layout-fix"></script>
+
+</body>
+</html>

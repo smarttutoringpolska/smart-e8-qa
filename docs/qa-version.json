@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "91d8ed32f3cb888501d2a3e11baeb15e35c98cbc",
+  "exportedAt": "2026-10-22T11:35:44.546Z",
+  "mode": "static-local-qa",
+  "exclusions": [
+    "ChatGPT access gate",
+    "server API",
+    "student accounts",
+    "cloud sync",
+    "owner quality dashboard"
+  ],
+  "adaptations": [
+    "profile bootstrap",
+    "local-only config",
+    "GitHub issue reporting instead of server reports"
+  ],
+  "originalFiles": {
+    "app.js": "4db85d97b36bdc9bdd78a968f844f332494c21b53d924d84d43b294ea0dc1d91",
+    "auth.css": "cb82c00033cf1d0dffce8b4ac40160e4000a74742b280df017c843cee732d80a",
+    "cloud.js": "1d9cde2777d0b30c8c9eab01bdf36be1b8f0c5552b35e48ce118f386b3f6e152",
+    "config.js": "b65c41beed8050f9b4f23a75fc9dfd4ef8a49151fcf2b9f4f28b841a61ed1330",
+    "diagnostic.js": "4d4b32c54e56c657f56459c80dc6bca18dacadca9efd427a06322fce0465b965",
+    "e8-curriculum.js": "ba65068cadbe613314ff7fdefb74aa2e1da7356625f69ae69db5f812a3454313",
+    "e8-data.js": "ee3749ae23757ce11adb353e8c8408a3f33b962ba0255ca6829343c01f1b4b5e",
+    "e8-experience.css": "7be0e41799998587bce0dfe2ed9d59613bf2993fa8c5b89f02c91af6b7081457",
+    "e8-experience.js": "80f8fbe202a64e078e8ac8a1c73f92df5644acc3ebae29f7f75577880c8624eb",
+    "e8-learning-engine.js": "fea151513f18c729ff57e65683f40a2884b2d827a02aa4eb845803326e2e194f",
+    "e8-more-data.js": "1d42a227823bfc4c6ab620cf0935bde09733e3133ae7e7dc09b0febda7bddb43",
+    "e8-open-work-extra.js": "af767c6e710cc84956e4ec06ff39d469a77e8c9b850d78c2944ec24a961d9682",
+    "e8-open-work-more.js": "f9992dd2fb36fd0e1f90cc7c04449b1bdebd4caa46fc8b16628171d18b1caf7b",
+    "e8-open-work.js": "3e0605b52d808cb8fb7499c335f1bb544462867a6ed8b7a530c54ebdd0d58e37",
+    "e8-program-final.js": "cdc81f5e95f76370ce32ee1628a668d4f9421efac747ae70410c677cb1c5e833",
+    "e8-self-work.js": "d6f4aa9e568cb93a136a711a36913adcaa9eb428448aed0e7ee2110bae6836fc",
+    "e8-solution-examples.js": "76358625dbde116cdf382b89cb94ffa1dbf2cda12c959ea5bc88812f8e883882",
+    "e8-solution-player.js": "bd8a15c9ece0d3dbe22245f8a11b26b9dac41424bf225f4253dc14026179b638",
+    "e8-task-visuals.js": "9a813fc3b82573fdd9bf7968dc269108da53d57c210f7d869affb47256f49c0c",
+    "e8-textbook-data.js": "4aae693c8679a2a35056ff1f94386a963618c438d44d23ce42da580ebb3840bd",
+    "e8-theme.css": "53e7b4c759bea2bc302c2e0b1196665958785d26329b1abe30b7c456df30c878",
+    "e8-visual-contact.css": "c5bf5c836032359023024181f8e51657409b6a67b9ae69f7d6eaae5731d5cea7",
+    "e8-visual-premium.js": "b6c7ff2d871661c264bff3e8dca57738f39231033babae785525d597a72a3967",
+    "e8-visual-system-v2.js": "3b4ec5d818195b299d334a64d8249efdef01811bc551434312d3a5d367fdafc7",
+    "e8-visual-system.js": "93e33de3a5ffcd8928ed5ae582d6b81aee13dcce93228f71c61fc8394deb8489",
+    "entry.css": "45b22bc759a2bd7b9513177ea394fd46d39519aaa50699fa790e0b9e422cdacd",
+    "index.html": "44898b73621643c5c7ccf739b86408511a358fdfb5006e75e713e9aeff935cfb",
+    "knowledge.js": "88f4bc62e0691415de767a5d90b3290404d1da4b0610976b462b11c287d7d075",
+    "more-courses.js": "79dfc8ed51ed259abc8099b956a75c1520ccc32d85f15eae41fbc8aa9eea1f5e",
+    "styles.css": "2bb6ca7cad3f3e3029375f63ec2f985ecd3efcfb2603ef17b8260936d42caaa4",
+    "sync.js": "2ad47933013fdb1f4f862a05615cb2d9400652c7176c7844f9e2d3b08c379f76",
+    "test-reports.css": "8b1e9f138e79a1d58ab21bf3e4be4823db5fabb0e6e409a31a585bc7fa62f363"
+  }
+}

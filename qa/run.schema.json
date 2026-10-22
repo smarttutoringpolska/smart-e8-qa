@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Smart E8 QA Run",
+  "type": "object",
+  "required": ["schemaVersion", "runId", "startedAt", "sourceCommit", "profile", "goal", "viewport", "course", "path", "status", "checks", "issues", "next"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "runId": {"type": "string"},
+    "startedAt": {"type": "string", "format": "date-time"},
+    "sourceCommit": {"type": "string"},
+    "profile": {"enum": ["weak30", "average50", "good70", "ambitious90", "focus", "compact"]},
+    "goal": {"enum": [30, 50, 70, 90]},
+    "viewport": {"type": ["object", "null"], "properties": {"width": {"type": "integer"}, "height": {"type": "integer"}}, "required": ["width", "height"]},
+    "course": {"type": "string"},
+    "path": {"type": "string"},
+    "status": {"enum": ["completed", "partial", "blocked"]},
+    "checks": {"type": "array", "items": {"type": "object", "required": ["name", "result", "evidence"], "properties": {"name": {"type": "string"}, "result": {"enum": ["pass", "fail", "not-tested"]}, "evidence": {"type": "string"}}}},
+    "issues": {"type": "array", "items": {"type": "integer"}},
+    "next": {"type": "string"}
+  }
+}
