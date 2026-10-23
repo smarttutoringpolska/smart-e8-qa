@@ -3,6 +3,10 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 
 const source = fs.readFileSync(new URL('../../docs/student/app.js', import.meta.url), 'utf8');
+const loaderSource = fs.readFileSync(new URL('../../docs/student/sync.js', import.meta.url), 'utf8');
+
+assert.match(loaderSource, /\?v=e8-qa-20261023-issue21-v2/u, 'Loader musi wymuszać pobranie poprawionej wersji app.js');
+assert.doesNotMatch(loaderSource, /e8-20260930-layout-fix/u, 'Loader nie może używać starego klucza cache');
 
 const taskTextStart = source.indexOf('function taskText(t,step){');
 const competencyStart = source.indexOf('function ckeCompetency(t,step){', taskTextStart);
