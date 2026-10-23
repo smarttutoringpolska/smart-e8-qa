@@ -2039,7 +2039,7 @@ function extraLearn(){const t=tasks[state.task],course=courseById(t.course),spec
 function learningPage(){return extraSubjectSpecs[tasks[state.task]?.course]?extraLearn():learn();}
 
 function bindTextbookLessonFlow(root){
-  $('[data-textbook-section]',root).forEach(link=>link.addEventListener('click',event=>{event.preventDefault();const target=root.querySelector(`#${link.dataset.textbookSection}`);if(!target)return;target.scrollIntoView({behavior:'smooth',block:'start'});}));
+  $$('[data-textbook-section]',root).forEach(link=>link.addEventListener('click',event=>{event.preventDefault();const target=root.querySelector(`#${link.dataset.textbookSection}`);if(!target)return;target.scrollIntoView({behavior:'smooth',block:'start'});}));
 }
 function bindDynamic(){
   const appMain=$('#appMain');
