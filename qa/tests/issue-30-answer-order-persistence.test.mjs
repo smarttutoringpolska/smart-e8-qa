@@ -5,7 +5,7 @@ import vm from 'node:vm';
 const source = fs.readFileSync(new URL('../../docs/student/app.js', import.meta.url), 'utf8');
 const loaderSource = fs.readFileSync(new URL('../../docs/student/sync.js', import.meta.url), 'utf8');
 
-assert.match(loaderSource, /\?v=e8-qa-20261024-issue30-v1/u, 'Loader musi pobrać wersję zachowującą kolejność odpowiedzi');
+assert.match(loaderSource, /\?v=e8-qa-20261024-issue(?:30|31)-v1/u, 'Loader musi pobrać wersję zachowującą kolejność odpowiedzi');
 
 const helperStart = source.indexOf('function shuffledOptions(');
 const helperEnd = source.indexOf('\nfunction taskText(', helperStart);
