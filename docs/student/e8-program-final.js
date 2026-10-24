@@ -25,7 +25,7 @@
     q('Temperatura wzrosła z −6°C do 2°C. O ile stopni wzrosła?', ['4°C', '6°C', '8°C', '−8°C'], 2, 'Policz różnicę temperatury końcowej i początkowej.', 'Zmiana wynosi 2 − (−6) = 8°C.'),
     q('Który zapis rzymski oznacza 94?', ['XCIV', 'XCVI', 'LXXXXIV', 'IC'], 0, '90 to XC, a 4 to IV.', 'Liczbę 94 zapisujemy jako XCIV.'),
     q('W liczbie 507 284 cyfra 7 oznacza…', ['7', '70', '7000', '70 000'], 2, 'Sprawdź pozycję cyfry w zapisie dziesiętnym.', 'Cyfra 7 stoi na miejscu tysięcy, więc oznacza 7000.'),
-    q('Która liczba jest wielokrotnością 12?', ['54', '60', '72', '82'], 2, 'Sprawdź kolejne iloczyny 12.', '72 = 12 · 6, więc jest wielokrotnością 12.'),
+    q('Która liczba jest wielokrotnością 12?', ['54', '62', '72', '82'], 2, 'Sprawdź kolejne iloczyny 12.', '72 = 12 · 6, więc jest wielokrotnością 12.'),
     q('Rozkład liczby 84 na czynniki pierwsze to…', ['2·42', '2²·3·7', '4·21', '2·3·14'], 1, 'W rozkładzie mogą wystąpić wyłącznie liczby pierwsze.', '84 = 2·42 = 2²·21 = 2²·3·7.'),
     q('Najlepszym oszacowaniem iloczynu 198·51 jest…', ['1000', '5000', '10 000', '100 000'], 2, 'Zaokrąglij do 200 i 50.', '198·51 ≈ 200·50 = 10 000.')
   ]);
