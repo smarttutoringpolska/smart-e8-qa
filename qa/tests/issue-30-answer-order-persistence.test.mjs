@@ -22,13 +22,13 @@ vm.runInNewContext(source.slice(helperStart, helperEnd), context);
 
 const step = { options: ['A1', 'B1', 'C1', 'D1'] };
 const firstOrder = Array.from(context.shuffledOptions(step));
-assert.deepEqual(persisted, firstOrder, 'Pierwsze wylosowanie musi zostać zapisane przed odświeżeniem');
+assert.equal(JSON.stringify(persisted), JSON.stringify(firstOrder), 'Pierwsze wylosowanie musi zostać zapisane przed odświeżeniem');
 
 context.state.optionOrder = persisted.slice();
 context.Math.random = () => 0.1;
 const restoredOrder = Array.from(context.shuffledOptions(step));
-assert.deepEqual(restoredOrder, firstOrder, 'Odtworzona permutacja nie może być losowana ponownie');
-assert.deepEqual(persisted, firstOrder, 'Odczyt zapisanej permutacji nie może jej nadpisać');
+assert.equal(JSON.stringify(restoredOrder), JSON.stringify(firstOrder), 'Odtworzona permutacja nie może być losowana ponownie');
+assert.equal(JSON.stringify(persisted), JSON.stringify(firstOrder), 'Odczyt zapisanej permutacji nie może jej nadpisać');
 
 assert.match(
   source,
