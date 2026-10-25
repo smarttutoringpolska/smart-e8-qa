@@ -204,7 +204,7 @@
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       const script = document.createElement("script");
-      script.src = `${scriptRoot}${src}?v=e8-qa-20261024-issue44-v1`;
+      script.src = `${scriptRoot}${src}?v=e8-qa-20261025-issue52-v1`;
       script.onload = resolve;
       script.onerror = reject;
       document.body.appendChild(script);
