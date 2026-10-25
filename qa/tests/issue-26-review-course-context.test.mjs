@@ -5,7 +5,7 @@ import vm from 'node:vm';
 const source = fs.readFileSync(new URL('../../docs/student/app.js', import.meta.url), 'utf8');
 const loaderSource = fs.readFileSync(new URL('../../docs/student/sync.js', import.meta.url), 'utf8');
 
-assert.match(loaderSource, /\?v=e8-qa-(?:20261024-issue(?:26|30|31|44)|20261025-issue52)-v1/u, 'Loader musi pobrać poprawioną wersję app.js');
+assert.match(loaderSource, /\?v=e8-qa-(?:20261024-issue(?:26|30|31|44)|20261025-(?:issue52|backlog))-v1/u, 'Loader musi pobrać poprawioną wersję app.js');
 
 const helperStart = source.indexOf('function restoreReviewCourse(');
 const helperEnd = source.indexOf('\nfunction routeTo(', helperStart);

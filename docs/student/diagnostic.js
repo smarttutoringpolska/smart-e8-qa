@@ -27,7 +27,7 @@ function diagnosticQuestionFromTask(course,taskId,stepIndex,suffix=''){
   };
 }
 
-function diagnosticQuestionsForGoal(goal=Number(saved.scoreGoal)||70){
+function legacyDiagnosticQuestionsForGoal(goal=Number(saved.scoreGoal)||70){
   const profile=diagnosticProfile(goal),selected=[];
   courses.forEach(course=>{
     const ids=course.taskIds.filter(id=>tasks[id]&&!tasks[id].exam);
@@ -49,6 +49,22 @@ function diagnosticQuestionsForGoal(goal=Number(saved.scoreGoal)||70){
   return selected;
 }
 
+function diagnosticQuestionKey(question){
+  const text=question.q.toLowerCase().normalize('NFKC').replace(/<[^>]*>/g,'').replace(/[\s.,:;…?]/g,'');
+  return text.includes('zdarzenianiemożliwego')||text.includes('zdarzenieniemożliwe')?'probability-impossible':text;
+}
+function diagnosticQuestionsForGoal(goal=Number(saved.scoreGoal)||70){
+  const usedIds=new Set(),usedPrompts=new Set();
+  return legacyDiagnosticQuestionsForGoal(goal).map(preferred=>{
+    const course=courses.find(item=>item.id===preferred.course);
+    const candidates=[preferred,...course.taskIds.filter(id=>tasks[id]&&!tasks[id].exam).flatMap(id=>lessonSteps(tasks[id]).map((_,index)=>diagnosticQuestionFromTask(course,id,index))).sort((a,b)=>Number(b.difficulty===preferred.difficulty)-Number(a.difficulty===preferred.difficulty))];
+    const question=candidates.find(item=>item&&!usedIds.has(`${item.taskId}|${item.id.replace(/-x\d+$/,'')}`)&&!usedPrompts.has(diagnosticQuestionKey(item)));
+    if(!question)throw new Error(`Brak unikalnego pytania diagnozy: ${preferred.course}`);
+    usedIds.add(`${question.taskId}|${question.id.replace(/-x\d+$/,'')}`);usedPrompts.add(diagnosticQuestionKey(question));
+    return question;
+  });
+}
+
 function refreshDiagnosticQuestions(goal=diagnosticState.goal||Number(saved.scoreGoal)||70){diagnosticState.goal=Number(goal);diagnosticQuestions=diagnosticQuestionsForGoal(goal);return diagnosticQuestions;}
 function diagnosticResultQuestions(result){return Array.isArray(result?.questions)&&result.questions.length?result.questions:diagnosticQuestionsForGoal(result?.goal||saved.scoreGoal);}
 
@@ -58,7 +74,7 @@ function restoreDiagnostic(){
   if(active?.version===DIAGNOSTIC_VERSION){
     diagnosticState.started=true;
     diagnosticState.goal=Number(active.goal)||Number(saved.scoreGoal)||70;
-    refreshDiagnosticQuestions(diagnosticState.goal);
+    diagnosticQuestions=Array.isArray(active.questions)&&active.questions.length?active.questions:legacyDiagnosticQuestionsForGoal(diagnosticState.goal);
     diagnosticState.current=Math.min(Number(active.current)||0,diagnosticQuestions.length-1);
     diagnosticState.answers=active.answers||{};
   }
@@ -68,7 +84,7 @@ function restoreDiagnostic(){
 }
 
 function saveDiagnosticProgress(){
-  saved.activeDiagnostic=diagnosticState.started?{version:DIAGNOSTIC_VERSION,goal:diagnosticState.goal,current:diagnosticState.current,answers:diagnosticState.answers}:null;
+  saved.activeDiagnostic=diagnosticState.started?{version:DIAGNOSTIC_VERSION,goal:diagnosticState.goal,current:diagnosticState.current,answers:diagnosticState.answers,questions:diagnosticQuestions.map(item=>({...item,options:[...item.options]}))}:null;
   persist();
 }
 function diagnosticAnswered(){return Object.keys(diagnosticState.answers).filter(id=>diagnosticQuestions.some(item=>item.id===id)).length;}

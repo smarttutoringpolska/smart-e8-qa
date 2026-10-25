@@ -29,12 +29,12 @@ const root = {
     return target;
   },
 };
-const context = { root, $$: () => [link] };
+const context = { root, $$: () => [link], requestAnimationFrame: callback => callback() };
 
 vm.runInNewContext(`${helperSource}\nbindTextbookLessonFlow(root)`, context);
 assert.equal(typeof clickHandler, 'function', 'Odnośnik planu lekcji powinien otrzymać obsługę kliknięcia');
 
-clickHandler({ preventDefault() { prevented = true; } });
+clickHandler({ preventDefault() { prevented = true; }, stopPropagation() {} });
 
 assert.equal(prevented, true, 'Domyślna zmiana hasha musi być zablokowana');
 assert.equal(selector, '#tb-formulas', 'Należy znaleźć sekcję banku wzorów w bieżącym widoku');
