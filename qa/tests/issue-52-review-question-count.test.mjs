@@ -4,7 +4,7 @@ import fs from 'node:fs';
 const source = fs.readFileSync(new URL('../../docs/student/app.js', import.meta.url), 'utf8');
 const loaderSource = fs.readFileSync(new URL('../../docs/student/sync.js', import.meta.url), 'utf8');
 
-assert.match(loaderSource, /\?v=e8-qa-20261025-issue52-v1/u, 'Loader musi pobrać wersję z poprawką licznika Powtórek');
+assert.match(loaderSource, /\?v=e8-qa-20261025-(?:issue52-v1|backlog-v1)/u, 'Loader musi pobrać wersję z poprawką licznika Powtórek');
 
 const reviewStart = source.indexOf('function adaptiveReviewPage(');
 const reviewEnd = source.indexOf('\nfunction openTopic(', reviewStart);

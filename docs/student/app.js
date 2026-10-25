@@ -1774,17 +1774,21 @@ function buildFullExamSuite(){
         if(closed.length===15)break;
       }
     }
-    const open=[],openPools=courses.map(({id:course})=>({course,pool:courseById(course).taskIds.filter(id=>!tasks[id]?.exam&&(tasks[id]?.steps?.length||0)>=3)}));
+    const open=[],openPools=courses.map(({id:course})=>({course,pool:selfWorkTasks(course)}));
     for(let round=0;open.length<5;round++){
       for(const entry of openPools){
-        const sourceId=entry.pool[(round+variantIndex*2)%entry.pool.length];
-        if(sourceId&&!open.some(item=>item.sourceId===sourceId))open.push({course:entry.course,sourceId,open:true});
+        const openTask=entry.pool[(round+variantIndex)%entry.pool.length],sourceId=courseById(entry.course).taskIds.find(id=>!tasks[id]?.exam);
+        if(openTask&&!open.some(item=>item.openTask===openTask))open.push({course:entry.course,sourceId,openTask,open:true});
         if(open.length===5)break;
       }
     }
     const selected=[...closed,...open],taskIds=selected.map((entry,index)=>{
       const source=tasks[entry.sourceId],id=`full-e8-${variantIndex+1}-${String(index+1).padStart(2,'0')}`,points=index<15?1:3;
       tasks[id]={...source,steps:entry.open?source.steps.slice(0,points):source.steps,course:entry.course,sourceTaskId:entry.sourceId,points:`${points} pkt`,exam:true,fullExam:true,fullExamOpen:entry.open,examSection:entry.open?'ZADANIE OTWARTE · WŁASNY ZAPIS':'CZĘŚĆ ZAMKNIĘTA',examGroup:courseById(entry.course).title,origin:'Arkusz autorski · zakres według informatora CKE'};
+      if(entry.open){
+        const rows=entry.openTask.steps;
+        Object.assign(tasks[id],{title:entry.openTask.title,problem:entry.openTask.problem,algebra:undefined,openSolutionSteps:rows.map(row=>`${row[0]} — ${row[5]} (1 pkt za ten etap)`),openScoringCriteria:rows.map(row=>`1 pkt: ${row[5]}`),steps:rows.map(row=>({q:row[1],options:row[2],correct:row[3],hints:[row[4]],conclusion:row[5]}))});
+      }
       return id;
     });
     return{id:`E8-${variantIndex+1}`,title:variantIndex===0?'Arkusz diagnostyczny':variantIndex===1?'Arkusz utrwalający':'Próba końcowa',desc:variantIndex===0?'Pierwszy przekrój całego materiału.':variantIndex===1?'Nowe dane i inne typy zadań.':'Najbardziej przekrojowy zestaw przed egzaminem.',taskIds,durationSeconds:125*60,totalPoints:30,fullExam:true};
@@ -1801,8 +1805,12 @@ function examDurationSeconds(){return activeExamSet().durationSeconds||25*60;}
 function examPassThreshold(){return fullExamMode()?0:80;}
 function examTimeLeft(){if(!state.examStartedAt)return examDurationSeconds();return Math.max(0,examDurationSeconds()-Math.floor((Date.now()-state.examStartedAt)/1000));}
 function formatTime(seconds){return `${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(seconds%60).padStart(2,'0')}`;}
-function examVisual(t,taskId=''){return `<aside class="exam-training-visual ${state.examSubmitted?'':'exam-locked-visual'}" data-task-id="${taskId}"><div class="visual-head"><div><h2>${visualTitle(t)}</h2><span>${state.examSubmitted?visualSubtitle(t):'Dane do samodzielnego odczytania'}</span></div><div class="visual-tools"><button type="button" data-visual-replay aria-label="Odtwórz wizualizację od początku">↻</button><button type="button" data-visual-expand aria-pressed="false">⛶ Powiększ</button></div></div><div class="graph-wrap">${taskVisual(t)}</div>${state.examSubmitted?`${relationLegend(t)}<div class="visual-note">${visualNote(t)}</div>`:`<div class="visual-note exam-neutral-note">Bez podpowiedzi — wykorzystaj tylko treść zadania i dane z rysunku.</div>`}</aside>`;}
+function standardExamVisual(t,taskId=''){return `<aside class="exam-training-visual ${state.examSubmitted?'':'exam-locked-visual'}" data-task-id="${taskId}"><div class="visual-head"><div><h2>${visualTitle(t)}</h2><span>${state.examSubmitted?visualSubtitle(t):'Dane do samodzielnego odczytania'}</span></div><div class="visual-tools"><button type="button" data-visual-replay aria-label="Odtwórz wizualizację od początku">↻</button><button type="button" data-visual-expand aria-pressed="false">⛶ Powiększ</button></div></div><div class="graph-wrap">${taskVisual(t)}</div>${state.examSubmitted?`${relationLegend(t)}<div class="visual-note">${visualNote(t)}</div>`:`<div class="visual-note exam-neutral-note">Bez podpowiedzi — wykorzystaj tylko treść zadania i dane z rysunku.</div>`}</aside>`;}
 function examStepsForTask(task){return task.fullExamOpen?task.steps:[task.steps.at(-1)];}
+function examVisual(task,taskId=''){
+  if(!task.fullExamOpen)return standardExamVisual(task,taskId);
+  return `<aside class="exam-training-visual"><div class="visual-head"><div><h2>${escapeHtml(task.title)}</h2><span>Zadanie otwarte · własny zapis</span></div></div><div class="visual-note">Wszystkie dane znajdują się w treści zadania. W razie potrzeby wykonaj własny szkic na kartce.</div></aside>`;
+}
 function examStageIndex(id){const count=examStepsForTask(tasks[id]).length;return Math.max(0,Math.min(Number(state.examStages[id])||0,count-1));}
 function examAnswerFor(id,stage=0){const task=tasks[id],value=state.examAnswers[id];return task.fullExamOpen?(typeof value?.draft==='string'?value.draft:''):value;}
 function examAnsweredStages(id){const task=tasks[id],value=state.examAnswers[id];if(!task.fullExamOpen)return Object.prototype.hasOwnProperty.call(state.examAnswers,id)?1:0;return typeof value?.draft==='string'&&value.draft.trim().length>=12?examStepsForTask(task).length:0;}
@@ -1858,7 +1866,7 @@ function knowledgeRouteForTask(t){
   const max=(knowledgeBase[resolved]?.definitions.length||1)-1;
   return{course:resolved,topic:Math.max(0,Math.min(topic,max))};
 }
-function examSolutionSteps(t){const lines=t.algebra?.lines?.filter(Boolean);if(lines?.length)return lines;const conclusions=(t.steps||[]).map(step=>step.conclusion).filter(Boolean);return conclusions.length?conclusions:[t.steps?.at(-1)?.q||'Porównaj dane z treści z wybraną odpowiedzią.'];}
+function examSolutionSteps(t){if(t.fullExamOpen&&t.openSolutionSteps?.length)return t.openSolutionSteps;const lines=t.algebra?.lines?.filter(Boolean);if(lines?.length)return lines;const conclusions=(t.steps||[]).map(step=>step.conclusion).filter(Boolean);return conclusions.length?conclusions:[t.steps?.at(-1)?.q||'Porównaj dane z treści z wybraną odpowiedzią.'];}
 function examSolutionPanel(t,item,selected){
   const route=knowledgeRouteForTask(t),steps=examStepsForTask(t);
   if(t.fullExamOpen){
@@ -2042,7 +2050,7 @@ function extraLearn(){const t=tasks[state.task],course=courseById(t.course),spec
 function learningPage(){return extraSubjectSpecs[tasks[state.task]?.course]?extraLearn():learn();}
 
 function bindTextbookLessonFlow(root){
-  $$('[data-textbook-section]',root).forEach(link=>link.addEventListener('click',event=>{event.preventDefault();const target=root.querySelector(`#${link.dataset.textbookSection}`);if(!target)return;target.scrollIntoView({behavior:'smooth',block:'start'});}));
+  $$('[data-textbook-section]',root).forEach(link=>link.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const target=root.querySelector(`#${link.dataset.textbookSection}`);if(!target)return;requestAnimationFrame(()=>target.scrollIntoView({behavior:'smooth',block:'start'}));}));
 }
 function bindDynamic(){
   const appMain=$('#appMain');
