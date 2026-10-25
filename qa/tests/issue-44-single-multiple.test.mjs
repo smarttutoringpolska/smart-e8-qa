@@ -4,7 +4,7 @@ import fs from 'node:fs';
 const source = fs.readFileSync(new URL('../../docs/student/e8-program-final.js', import.meta.url), 'utf8');
 const loaderSource = fs.readFileSync(new URL('../../docs/student/sync.js', import.meta.url), 'utf8');
 
-assert.match(loaderSource, /\?v=e8-qa-20261024-issue44-v1/u, 'Loader musi pobrać wersję z poprawką pytania o wielokrotność');
+assert.match(loaderSource, /\?v=e8-qa-(?:20261024-issue44|20261025-issue52)-v1/u, 'Loader musi pobrać wersję z poprawką pytania o wielokrotność');
 
 const match = source.match(/q\('Która liczba jest wielokrotnością 12\?', \[(.*?)\], (\d),/u);
 assert.ok(match, 'Brakuje pytania o wielokrotność 12');
