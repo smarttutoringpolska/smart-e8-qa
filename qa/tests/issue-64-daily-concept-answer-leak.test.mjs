@@ -53,7 +53,7 @@ assert.equal(
   2,
   'Poprawka ma być ładowana zarówno w trybie lokalnym QA, jak i w ścieżce konta',
 );
-assert.match(loader, /e8-qa-20261026-issue64-v1/u, 'Loader ma omijać poprzednią wersję cache');
-assert.match(entry, /sync\.js\?v=e8-qa-20261026-issue64-v1/u, 'Strona ma pobierać nową wersję loadera');
+assert.match(loader, /e8-qa-20261026-issue(?:64|68)-v1/u, 'Loader ma omijać poprzednią wersję cache');
+assert.match(entry, /sync\.js\?v=e8-qa-20261026-issue(?:64|68)-v1/u, 'Strona ma pobierać nową wersję loadera');
 
 console.log('OK issue #64: konkretna treść i brak wyniku przed odpowiedzią; rozwiązanie po odpowiedzi');

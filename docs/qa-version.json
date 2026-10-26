@@ -3,7 +3,7 @@
   "sourceCommit": "91d8ed32f3cb888501d2a3e11baeb15e35c98cbc",
   "exportedAt": "2026-10-22T11:35:44.546Z",
   "mode": "static-local-qa",
-  "qaVersion": "e8-qa-20261026-issue64-v1",
+  "qaVersion": "e8-qa-20261026-issue68-v1",
   "exclusions": [
     "ChatGPT access gate",
     "server API",
