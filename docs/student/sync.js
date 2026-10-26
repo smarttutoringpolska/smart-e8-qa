@@ -204,7 +204,7 @@
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       const script = document.createElement("script");
-      script.src = `${scriptRoot}${src}?v=e8-qa-20261026-issue64-v1`;
+      script.src = `${scriptRoot}${src}?v=e8-qa-20261026-issue68-v1`;
       script.onload = resolve;
       script.onerror = reject;
       document.body.appendChild(script);
@@ -274,7 +274,7 @@
         if (!(event.target instanceof Element) || !event.target.closest(".account-wrap")) accountMenu?.classList.remove("open");
       });
       setSyncStatus("Postęp na tym urządzeniu", "offline");
-      for (const script of ["more-courses.js", "e8-learning-engine.js", "diagnostic.js", "knowledge.js", "e8-data.js", "e8-more-data.js", "e8-textbook-data.js", "e8-curriculum.js", "e8-program-final.js", "e8-visual-system.js", "e8-visual-system-v2.js", "e8-visual-premium.js", "e8-task-visuals.js", "e8-open-work.js", "e8-open-work-more.js", "e8-open-work-extra.js", "e8-self-work.js", "app.js", "issue-64-daily-concept-fix.js"]) {
+      for (const script of ["more-courses.js", "e8-learning-engine.js", "diagnostic.js", "knowledge.js", "e8-data.js", "e8-more-data.js", "e8-textbook-data.js", "e8-curriculum.js", "e8-program-final.js", "e8-visual-system.js", "e8-visual-system-v2.js", "e8-visual-premium.js", "e8-task-visuals.js", "e8-open-work.js", "e8-open-work-more.js", "e8-open-work-extra.js", "e8-self-work.js", "app.js", "issue-64-daily-concept-fix.js", "issue-68-exam-concept-fix.js"]) {
         await loadScript(script);
       }
       return;
@@ -338,7 +338,7 @@
       };
       queueEvent(event);
     });
-    for (const script of ["more-courses.js", "e8-learning-engine.js", "diagnostic.js", "knowledge.js", "e8-data.js", "e8-more-data.js", "e8-textbook-data.js", "e8-curriculum.js", "e8-program-final.js", "e8-visual-system.js", "e8-visual-system-v2.js", "e8-visual-premium.js", "e8-task-visuals.js", "e8-open-work.js", "e8-open-work-more.js", "e8-open-work-extra.js", "e8-self-work.js", "app.js", "issue-64-daily-concept-fix.js"]) {
+    for (const script of ["more-courses.js", "e8-learning-engine.js", "diagnostic.js", "knowledge.js", "e8-data.js", "e8-more-data.js", "e8-textbook-data.js", "e8-curriculum.js", "e8-program-final.js", "e8-visual-system.js", "e8-visual-system-v2.js", "e8-visual-premium.js", "e8-task-visuals.js", "e8-open-work.js", "e8-open-work-more.js", "e8-open-work-extra.js", "e8-self-work.js", "app.js", "issue-64-daily-concept-fix.js", "issue-68-exam-concept-fix.js"]) {
       await loadScript(script);
     }
   }
