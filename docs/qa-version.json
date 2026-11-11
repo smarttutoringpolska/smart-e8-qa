@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "sourceCommit": "91d8ed32f3cb888501d2a3e11baeb15e35c98cbc",
-  "exportedAt": "2026-10-22T11:35:44.546Z",
+  "sourceCommit": "fa3ed77c8b6d7b98ea78ebe52b4535f450316673",
+  "exportedAt": "2026-11-11T18:04:12.060Z",
   "mode": "static-local-qa",
-  "qaVersion": "e8-qa-20261026-issue68-v1",
+  "qaVersion": "e8-qa-20261111-prod70",
   "exclusions": [
     "ChatGPT access gate",
     "server API",
@@ -17,7 +17,7 @@
     "GitHub issue reporting instead of server reports"
   ],
   "originalFiles": {
-    "app.js": "4db85d97b36bdc9bdd78a968f844f332494c21b53d924d84d43b294ea0dc1d91",
+    "app.js": "74107c4e6897e7d3d1d83160449bc7388bf673a80a64f75089f5414264a7fef4",
     "auth.css": "cb82c00033cf1d0dffce8b4ac40160e4000a74742b280df017c843cee732d80a",
     "cloud.js": "1d9cde2777d0b30c8c9eab01bdf36be1b8f0c5552b35e48ce118f386b3f6e152",
     "config.js": "b65c41beed8050f9b4f23a75fc9dfd4ef8a49151fcf2b9f4f28b841a61ed1330",
@@ -31,13 +31,13 @@
     "e8-open-work-extra.js": "af767c6e710cc84956e4ec06ff39d469a77e8c9b850d78c2944ec24a961d9682",
     "e8-open-work-more.js": "f9992dd2fb36fd0e1f90cc7c04449b1bdebd4caa46fc8b16628171d18b1caf7b",
     "e8-open-work.js": "3e0605b52d808cb8fb7499c335f1bb544462867a6ed8b7a530c54ebdd0d58e37",
-    "e8-program-final.js": "cdc81f5e95f76370ce32ee1628a668d4f9421efac747ae70410c677cb1c5e833",
+    "e8-program-final.js": "c80350d6cfa35d466ec06dda81de347c9b7dc6b42c607dd7f486d0b58782703c",
     "e8-self-work.js": "d6f4aa9e568cb93a136a711a36913adcaa9eb428448aed0e7ee2110bae6836fc",
     "e8-solution-examples.js": "76358625dbde116cdf382b89cb94ffa1dbf2cda12c959ea5bc88812f8e883882",
     "e8-solution-player.js": "bd8a15c9ece0d3dbe22245f8a11b26b9dac41424bf225f4253dc14026179b638",
     "e8-task-visuals.js": "9a813fc3b82573fdd9bf7968dc269108da53d57c210f7d869affb47256f49c0c",
     "e8-textbook-data.js": "4aae693c8679a2a35056ff1f94386a963618c438d44d23ce42da580ebb3840bd",
-    "e8-theme.css": "53e7b4c759bea2bc302c2e0b1196665958785d26329b1abe30b7c456df30c878",
+    "e8-theme.css": "ecb886dac85a465a134c0cbc02bd31d7e930d6a47c58552e94dfebc2217b4dde",
     "e8-visual-contact.css": "c5bf5c836032359023024181f8e51657409b6a67b9ae69f7d6eaae5731d5cea7",
     "e8-visual-premium.js": "b6c7ff2d871661c264bff3e8dca57738f39231033babae785525d597a72a3967",
     "e8-visual-system-v2.js": "3b4ec5d818195b299d334a64d8249efdef01811bc551434312d3a5d367fdafc7",
